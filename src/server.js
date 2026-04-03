@@ -3,7 +3,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dns = require('dns');
 
-// Force Google DNS servers
 dns.setServers(['8.8.8.8', '8.8.4.4']);
 
 const app = express();
@@ -12,6 +11,8 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.json({ message: 'Mednow API is running.' });
 });
+
+console.log(`NODE_ENV: ${process.env.NODE_ENV || 'not set'}`);
 
 mongoose
   .connect(process.env.DB_CONNECTION)
